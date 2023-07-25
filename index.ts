@@ -4,6 +4,17 @@ config();
 import express, { Request, Response } from "express";
 const app = express();
 
+import morgan from "morgan";
+app.use(morgan("tiny"));
+
+import rateLimit from "express-rate-limit";
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 60,
+  standardHeaders: true,
+});
+app.use(limiter);
+
 import * as simpleIcons from "simple-icons";
 
 const ICONS_PER_LINE = 15;
