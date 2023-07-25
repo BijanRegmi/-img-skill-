@@ -42,6 +42,7 @@ or
 <img src="https://img-skill.bijanregmi.com.np?icons=typescript,nodedotjs,nextdotjs,react,redux,tailwindcss,css3,prisma,planetscale,postgresql,mongodb,mysql,redis,express,postman,vercel,docker,git,gnubash,linux,neovim,markdown,cplusplus,python,lua&perline=10" />
 
 ### Light Theme
+Might look ugly if your browser is in light mode.
 
 <details>
   <summary>Code</summary>
@@ -56,6 +57,7 @@ or
 <img src="https://img-skill.bijanregmi.com.np?icons=typescript,nodedotjs,nextdotjs,react,redux,tailwindcss,css3,prisma,planetscale,postgresql,mongodb,mysql,redis,express,postman,vercel,docker,git,gnubash,linux,neovim,markdown,cplusplus,python,lua&perline=10&theme=light" />
 
 ### Dark Theme
+Might look ugly if your browser is in dark mode.
 
 <details>
   <summary>Code</summary>
