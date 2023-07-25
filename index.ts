@@ -34,13 +34,16 @@ function generateSvg(
   size: number,
 ) {
   const iconSvgList = slugs.map((i) => {
+    const icon = icons[i];
+    if (!icon) return "";
+
     const fillColor =
       theme == "default"
-        ? `#${icons[i].hex}`
+        ? `#${icon.hex}`
         : theme == "light"
         ? "whitesmoke"
         : "#333";
-    return icons[i].svg.replace("<svg", `<svg fill="${fillColor}"`);
+    return icon.svg.replace("<svg", `<svg fill="${fillColor}"`);
   });
 
   const scale = size / ICON_BOX_SIZE;
@@ -69,11 +72,42 @@ app.get(
       {},
       {},
       {},
-      { icons: string; perline?: string; theme?: string; size?: string }
+      { icons?: string; perline?: string; theme?: string; size?: string }
     >,
     res: Response,
   ) => {
     const { icons, perline, theme, size } = req.query;
+
+    const fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
+
+    if (icons == undefined)
+      return res.setHeader("Content-Type", "application/json").send({
+        queries: {
+          icons: {
+            required: true,
+            description:
+              "List of icon slugs from https://simpleicons.org/ separated by comma",
+          },
+          perline: {
+            required: false,
+            description: "Number of icons to show per line",
+            default: 15,
+          },
+          theme: {
+            required: false,
+            description:
+              "Theme used for the icon. Can be either default, light or dark",
+            default: "default",
+          },
+          size: {
+            required: false,
+            description: "Size of each icon",
+            default: 48,
+          },
+        },
+        example: `${fullUrl}?icons=javascript,css3,typescript,react&perline=3}`,
+        moreInfo: "https://github.com/BijanRegmi/-img-skill-",
+      });
 
     let theme_parsed = "default";
 
